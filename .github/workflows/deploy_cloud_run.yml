@@ -2,9 +2,9 @@ name: publish
 
 on:
   push:
-    branches: [ master ]
+    branches: [ docker ]
   pull_request:
-    branches: [ master ]
+    branches: [ docker ]
 
 jobs:
   build:
@@ -15,14 +15,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Setup GCP Service Account
-        uses: google-github-actions/setup-gcloud@master
+      - name: Authenticate with Google Cloud
+        id: 'auth'
+        uses: 'google-github-actions/auth@v0'
         with:
-          version: 'latest'
-          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          export_default_credentials: true
-
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+      
       - name: Configure Docker
         run: |
           gcloud auth configure-docker
