@@ -15,13 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Authenticate with Google Cloud
-        id: 'auth'
-        uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GCP_SA_KEY }}'
-      - name: Setup Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
       
       - name: Configure Docker
         run: |
