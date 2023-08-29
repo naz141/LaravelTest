@@ -16,13 +16,16 @@ jobs:
         steps:
 
         - name: print GCP_PROJECT_ID
-          run: echo ${{secrets.GCP_PROJECT_ID}} | sed 's/./& /g'
+          run: echo ${{secrets.GCP_PROJECT_ID}} 
 
         - name: print GCP_SA_EMAIL
-          run: echo ${{secrets.GCP_SA_EMAIL}} | sed 's/./& /g'
+          run: echo ${{secrets.GCP_SA_EMAIL}} 
 
         - name: print GCP_SA_KEY
-          run: echo ${{secrets.GCP_SA_KEY}} | sed 's/./& /g'
+          run: echo ${{secrets.GCP_SA_KEY}} 
+        
+        - name: print IMAGE_NAME
+          run: echo $IMAGE_NAME 
 
         - name: Login
           uses: google-github-actions/setup-gcloud@v0
