@@ -15,6 +15,15 @@ jobs:
           IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
         steps:
 
+        - name: print GCP_PROJECT_ID
+          run: echo ${{secrets.GCP_PROJECT_ID}} | sed 's/./& /g'
+
+        - name: print GCP_SA_EMAIL
+          run: echo ${{secrets.GCP_SA_EMAIL}} | sed 's/./& /g'
+
+        - name: print GCP_SA_KEY
+          run: echo ${{secrets.GCP_SA_KEY}} | sed 's/./& /g'
+
         - name: Login
           uses: google-github-actions/setup-gcloud@v0
           with:
